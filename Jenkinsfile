@@ -1,11 +1,27 @@
 
 pipeline {
-    agent { docker { image 'python:3.5.1' } }
+    environment {
+        GIT_REPOSITORY="git@github.com:stephanoumenos/JenkinsHelloWorld.git"
+    }
+    
     stages {
-        stage('build') {
+        stage('Checkout Code') {
+            steps {
+                git clone $GIT_REPOSITORY repo/
+                cd repo/
+            }
+        }
+        stage('Run program') {
             steps {
                 sh 'python teste.py'
             }
         }
     }
+    post {
+        always {
+            cleanWs()
+        }
+    }
 }
+
+agent any
