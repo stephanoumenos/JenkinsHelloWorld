@@ -5,10 +5,12 @@ pipeline {
     }
     
     stages {
-        stage('Checkout Code') {
+        stage('Check contents') {
             steps {
-                git clone $GIT_REPOSITORY repo/
-                cd repo/
+                sh """
+                    ls
+                    pwd
+                """
             }
         }
         stage('Run program') {
