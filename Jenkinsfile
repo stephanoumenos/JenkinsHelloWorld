@@ -4,11 +4,11 @@ pipeline {
     environment {
         GIT_REPOSITORY="git@github.com:stephanoumenos/JenkinsHelloWorld.git"
     }
-    
+
     stages {
         stage('Code Checkout') {
             steps {
-                                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/stephanoumenos/JenkinsHelloWorld']]])
+                                checkout([$class: 'GitSCM', branches: [[name: '*/NGIX/TOMCAT']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/stephanoumenos/JenkinsHelloWorld']]])
             }
         }
 
@@ -27,4 +27,3 @@ pipeline {
 
     }
 }
-
