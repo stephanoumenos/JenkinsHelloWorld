@@ -19,9 +19,17 @@ pipeline {
             }
         }
 
-        stage('Run program') {
+        stage('Build image using docker-compose.yml') {
             steps {
-                sh 'python teste.py'
+                sh 'docker-compose up'
+            }
+        }
+        
+        // Now we should have our Tomcat and Nginx dockers up and running
+
+        stage('Check if Tomcat is running') {
+            steps {
+                sh 'check-if-tomcat-is-running.sh'
             }
         }
 
