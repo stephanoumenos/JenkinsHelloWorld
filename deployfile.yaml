@@ -6,6 +6,7 @@ metadata:
     app: spring
 spec:
   replicas: 3
+  activeDeadlineSeconds: 120
   selector:
     matchLabels:
       app: spring
