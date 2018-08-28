@@ -1,15 +1,11 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: batch/v1
+kind: Job
 metadata:
   name: java-deployment
   labels:
     app: spring
 spec:
-  replicas: 3
   activeDeadlineSeconds: 120
-  selector:
-    matchLabels:
-      app: spring
   template:
     metadata:
       labels:
@@ -20,3 +16,4 @@ spec:
         image: stephanoumenos/java-deployment
         ports:
           - containerPort: 8080
+      restartPolicy: Never
