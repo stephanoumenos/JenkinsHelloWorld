@@ -1,34 +1,24 @@
 package com.example.demo;
 
-import java.util.Date;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 
 @RestController
 public class HealthCheckController {
 
-    private final String greetingString = "Server running!";
-    private int timesVisited = 0;
-    private final long startTimeLong = System.currentTimeMillis();
+    private HealthCheck status = new HealthCheck();
 
-    @RequestMapping(path = "/greeting")
-    public String greeting () {
-	timesVisited++;
+    @RequestMapping(path = "/healthCheck", produces = "application/json")
+    public @ResponseBody HealthCheck healthCheck () {
 
-	String returnString = "";
-	returnString += greetingString;
-	returnString += "... Times visited: ";
-	returnString += Integer.toString(timesVisited);
-        returnString += " Time running... " + Integer.toString(getSecondsRunning()) + " seconds";
-
-	return returnString;
+	status.incrementTimesVisited();
+	return status;
+	
     }
     
-    private int getSecondsRunning() {
-	long nowTimeMillis = System.currentTimeMillis();
-	return (int) ((nowTimeMillis - startTimeLong)/1000);
-    }
+    
 }
 
