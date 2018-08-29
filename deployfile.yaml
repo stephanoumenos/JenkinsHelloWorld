@@ -19,3 +19,14 @@ spec:
         image: stephanoumenos/java-deployment
         ports:
           - containerPort: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: spring-service
+spec:
+  selector:
+    app: spring
+  ports:
+  - protocol: TCP
+    port: 8080
